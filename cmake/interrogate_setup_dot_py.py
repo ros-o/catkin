@@ -34,6 +34,7 @@ from __future__ import print_function
 
 import os
 import runpy
+import warnings
 import sys
 from argparse import ArgumentParser
 
@@ -46,10 +47,13 @@ except ImportError:
     pass
 
 try:
+    warnings.filterwarnings("ignore", category=DeprecationWarning)
     import distutils.core
     setup_modules.append(distutils.core)
 except ImportError:
     pass
+finally:
+    warnings.resetwarnings()
 
 assert setup_modules, 'Must have distutils or setuptools installed'
 
