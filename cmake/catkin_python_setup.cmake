@@ -151,16 +151,16 @@ function(catkin_python_setup)
   set(INSTALL_CMD_WORKING_DIRECTORY ${${PROJECT_NAME}_SOURCE_DIR})
   if(NOT WIN32)
     set(INSTALL_SCRIPT
-      ${CMAKE_CURRENT_BINARY_DIR}/catkin_generated/python_distutils_install.sh)
-    configure_file(${catkin_EXTRAS_DIR}/templates/python_distutils_install.sh.in
+      ${CMAKE_CURRENT_BINARY_DIR}/catkin_generated/python_install.sh)
+    configure_file(${catkin_EXTRAS_DIR}/templates/python_install.sh.in
       ${INSTALL_SCRIPT}
       @ONLY)
   else()
     # need to convert install prefix to native path for python setuptools --prefix (its fussy about \'s)
     file(TO_NATIVE_PATH ${CMAKE_INSTALL_PREFIX} PYTHON_INSTALL_PREFIX)
     set(INSTALL_SCRIPT
-      ${CMAKE_CURRENT_BINARY_DIR}/catkin_generated/python_distutils_install.bat)
-    configure_file(${catkin_EXTRAS_DIR}/templates/python_distutils_install.bat.in
+      ${CMAKE_CURRENT_BINARY_DIR}/catkin_generated/python_install.bat)
+    configure_file(${catkin_EXTRAS_DIR}/templates/python_install.bat.in
       ${INSTALL_SCRIPT}
       @ONLY)
   endif()

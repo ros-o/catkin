@@ -34,7 +34,7 @@ if(EXISTS ${_catkin_marker_file})
   endif()
 else()
   # create a new develspace marker file
-  # NOTE: extra care must be taken when running multiple catkin jobs in parallel 
+  # NOTE: extra care must be taken when running multiple catkin jobs in parallel
   #       so that this does not overwrite the result of a similar call in another package
   file(WRITE ${_catkin_marker_file} "${CMAKE_SOURCE_DIR}")
 endif()
@@ -120,7 +120,7 @@ endif()
 include(CMakeParseArguments)
 
 # functions/macros: list_append_unique, safe_execute_process
-# python-integration: catkin_python_setup.cmake, interrogate_setup_dot_py.py, templates/__init__.py.in, templates/script.py.in, templates/python_distutils_install.bat.in, templates/python_distutils_install.sh.in, templates/safe_execute_install.cmake.in
+# python-integration: catkin_python_setup.cmake, interrogate_setup_dot_py.py, templates/__init__.py.in, templates/script.py.in, templates/python_install.bat.in, templates/python_install.sh.in, templates/safe_execute_install.cmake.in
 foreach(filename
     assert
     atomic_configure_file
