@@ -17,5 +17,9 @@ for /f "usebackq tokens=*" %%a in ('@SETUPTOOLS_INSTALL_PREFIX@') do (
   set _SETUPTOOLS_INSTALL_ROOT=%%~da
 )
 
-"@PYTHON_EXECUTABLE@" -m pip install --ignore-installed --no-deps --use-pep517 --no-build-isolation --prefix "%_SETUPTOOLS_INSTALL_PATH%" ^
-    "@CMAKE_CURRENT_SOURCE_DIR@"
+"@PYTHON_EXECUTABLE@" -m build --wheel --outdir "@SETUPTOOLS_BUILD_DIR@" --no-isolation ^
+    @SETUPTOOLS_OVERRIDE_BUILD_BASE@ ^
+    "@CMAKE_CURRENT_SOURCE_DIR@" &&
+
+"@PYTHON_EXECUTABLE@" -m pip install --prefix "%_SETUPTOOLS_INSTALL_PATH%" --ignore-installed --no-deps ^
+    "@SETUPTOOLS_BUILD_DIR@"\*.whl
