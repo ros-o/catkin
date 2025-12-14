@@ -31,6 +31,9 @@ echo_and_run /usr/bin/env \
       @SETUPTOOLS_OVERRIDE_BUILD_BASE@ \
       "@CMAKE_CURRENT_SOURCE_DIR@" &&
 
+# Remove temporary *.egg-info directories created by setuptools during build
+echo_and_run find -L "@CMAKE_CURRENT_SOURCE_DIR@" -name "*.egg-info" -print -exec rm -r {} + &&
+
 echo_and_run /usr/bin/env \
     @PIP_EXTRA_ENV@ \
     PIP_BREAK_SYSTEM_PACKAGES=1 \
