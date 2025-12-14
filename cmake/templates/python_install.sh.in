@@ -28,7 +28,7 @@ echo_and_run /usr/bin/env \
       --wheel \
       --outdir @SETUPTOOLS_BUILD_DIR@ \
       --no-isolation \
-      @SETUPTOOLS_OVERRIDE_BUILD_BASE@ \
+      --config-setting=--build-option=build --config-setting=--build-option=--build-base=@SETUPTOOLS_BUILD_DIR@ \
       "@CMAKE_CURRENT_SOURCE_DIR@" &&
 
 # Remove temporary *.egg-info directories created by setuptools during build

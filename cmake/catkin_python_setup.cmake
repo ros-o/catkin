@@ -149,15 +149,6 @@ function(catkin_python_setup)
   endif()
 
   cmake_path(CONVERT "${CMAKE_BINARY_DIR}/setuptools_build" TO_NATIVE_PATH_LIST SETUPTOOLS_BUILD_DIR NORMALIZE)
-  # if setuptools version > 69 is available, we can isolate the build directory
-  # https://github.com/pypa/setuptools/pull/4079
-  execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import setuptools; print(setuptools.__version__)"
-    OUTPUT_VARIABLE PYTHON_SETUPTOOLS_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-  if(PYTHON_SETUPTOOLS_VERSION VERSION_GREATER_EQUAL "69.0.0")
-    set(SETUPTOOLS_ISOLATED_BUILD "--config-settings=--build-option=build --config-settings=--build-option=--build-base=${SETUPTOOLS_BUILD_DIR}")
-  else()
-    set(SETUPTOOLS_ISOLATED_BUILD "")
-  endif()
   set(INSTALL_CMD_WORKING_DIRECTORY ${${PROJECT_NAME}_SOURCE_DIR})
   if(NOT WIN32)
     set(INSTALL_SCRIPT
