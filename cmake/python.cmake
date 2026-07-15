@@ -1,11 +1,16 @@
 # the CMake variable PYTHON_INSTALL_DIR has the same value as the Python function catkin.builder.get_python_install_dir()
 
 set(PYTHON_VERSION "$ENV{ROS_PYTHON_VERSION}" CACHE STRING "Specify specific Python version to use ('major.minor' or 'major')")
-find_package(PythonInterp ${PYTHON_VERSION} REQUIRED)
+find_package(Python ${PYTHON_VERSION} COMPONENTS Interpreter REQUIRED)
 
-message(STATUS "Using PYTHON_EXECUTABLE: ${PYTHON_EXECUTABLE}")
+# Set variables for compatibility with old find_package(PythonInterp)
+set(PYTHON_EXECUTABLE ${Python_EXECUTABLE})
+set(PYTHON_VERSION_STRING ${Python_VERSION})
+set(PYTHON_VERSION_MAJOR ${Python_VERSION_MAJOR})
+set(PYTHON_VERSION_MINOR ${Python_VERSION_MINOR})
+message(STATUS "Using Python_EXECUTABLE: ${Python_EXECUTABLE}")
 
-set(_PYTHON_PATH_VERSION_SUFFIX "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
+set(_PYTHON_PATH_VERSION_SUFFIX "${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}")
 
 set(enable_setuptools_deb_layout OFF)
 if(EXISTS "/etc/debian_version")
@@ -16,10 +21,10 @@ option(SETUPTOOLS_DEB_LAYOUT "Enable debian style python package layout" ${enabl
 if(SETUPTOOLS_DEB_LAYOUT)
   message(STATUS "Using Debian Python package layout")
   set(PYTHON_PACKAGES_DIR dist-packages)
-  set(SETUPTOOLS_ARG_EXTRA "--install-layout=deb")
+  set(PIP_EXTRA_ENV "DEB_PYTHON_INSTALL_LAYOUT=deb")
   # use major version only when installing 3.x with debian layout
-  if("${PYTHON_VERSION_MAJOR}" STREQUAL "3")
-    set(_PYTHON_PATH_VERSION_SUFFIX "${PYTHON_VERSION_MAJOR}")
+  if("${Python_VERSION_MAJOR}" STREQUAL "3")
+    set(_PYTHON_PATH_VERSION_SUFFIX "${Python_VERSION_MAJOR}")
   endif()
 else()
   message(STATUS "Using default Python package layout")

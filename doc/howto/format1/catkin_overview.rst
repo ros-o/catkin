@@ -84,7 +84,7 @@ CMakeLists.txt
 Catkin ``CMakeLists.txt`` files mostly contain ordinary CMake
 commands, plus a few catkin-specific ones.  They begin like this::
 
-  cmake_minimum_required(VERSION 3.0.2)
+  cmake_minimum_required(VERSION 3.16)
   project(your_package)
 
 Substitute the actual name of your package in the ``project()``

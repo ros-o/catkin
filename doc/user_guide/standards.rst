@@ -13,7 +13,7 @@ For inspiration, look at the guideline examples here:
 
 The following lines must always appear the CMakeLists.txt in this order::
 
-  cmake_minimum_required(VERSION 3.0.2)
+  cmake_minimum_required(VERSION 3.16)
   project(myproject)
   find_package(catkin REQUIRED <COMPONENTS ...>)
   catkin_package(<...>)
