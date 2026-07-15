@@ -49,9 +49,6 @@
   <test_depend condition="$ROS_PYTHON_VERSION == 2">python-nose</test_depend>
   <test_depend condition="$ROS_PYTHON_VERSION == 3">python3-nose</test_depend>
 
-  <!-- This alternative is required to use debian's catkin in an /opt workspace -->
-  <conflict>setup_files</conflict>
-
   <export>
     <rosdoc config="rosdoc.yaml"/>
     <architecture_independent/>
